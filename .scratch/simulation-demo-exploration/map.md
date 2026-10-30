@@ -11,16 +11,17 @@
 - [05 密度展示](issues/05-density-demonstration-candidates.md)
 - [06 候选总览与推荐](issues/06-candidate-overview-and-recommendations.md)
 
-**当前接续：**01–05 已完成首轮研究，Comments 保存用户反馈。06 等待用户继续说明调研方式和新效果想法；后续票从 07 编号，可在 06 执行前建立。新票链接原研究票，承担具体讨论或补充调研；其中汇总必需的研究票建好后加入 06 的依赖，06 再收束候选。复跑票按最终选中的候选与场景建立。
+**当前接续：**用户确认本轮反馈已完整，01–05 保持已完成状态，06 直接依据现有反馈汇总。后续票从 07 编号，由具体补充调研需求触发并链接原研究票；真正阻塞汇总的研究任务才加入 06 的依赖。复跑票按最终选中的候选与场景建立。
 
 ## Decisions-so-far
 
+- 2026-10-30，用户确认本轮评价和筛选建议已表达完整，调研方式方面沿用已有意见。06 的人工输入已齐备；
 - 2026-10-30，用户完成首轮观看评价，详见 01–05 各工单的 Comments。**当前优先级与候选取舍以这轮反馈为准**；此前研究记录中的 AI 推荐保留为首轮判断。
 - 2026-10-30，用户补充明确需求重心为**已有几何和材料参数的正向仿真，按需加后渲染**。后续按论文贡献、实际仿真实现与任务用途辨认候选价值；效率、接触、耦合等贡献按场景需要取舍，神经方法按其实际角色判断。共同筛选依据见[规格](spec.md)，用户原意见 [06 Comments](issues/06-candidate-overview-and-recommendations.md#comments)。
 - **01 为后续重点**：感兴趣的是 FreeForm、PhysTwin、Boba、AnisoMPM；次一级为 SoftMAC、MiNNIE。PhysGaussian 降为仿真与外观结合参考，Breaking Good 移出当前仿真候选；Newton、PhysX、MuJoCo、libuipc 为用户补充的框架线索。组织持续性、维护与实际采用成为筛选重点。详见 [01 用户反馈](issues/01-solid-deformation-candidates.md#comments)。
 - **02 后续分开布料与植物**，塑料瓶单列覆盖缺口；比较 IPC 各实现与材料模型／框架的配合。后续主候选排除老论文，关注在用实现；植物的参数预测、正向仿真和外观表示分别核实。详见 [02 用户反馈](issues/02-cloth-shell-plant-candidates.md#comments)。
 - **03、04 收窄投入**，优先近期、用户多、知名度高的代表项目。04 聚焦 Mixed MPM / Newton、Blender / Mantaflow。详见 [03](issues/03-granular-material-candidates.md#comments)、[04](issues/04-viscous-fluid-candidates.md#comments)。
-- **05 暂无候选偏好**，新线索是软体入液，在丰富的形变和流体互动中体现密度差异；后续另建场景工单展开。调研方式的完整约定也待独立工单讨论。详见 [05 用户反馈](issues/05-density-demonstration-candidates.md#comments)。
+- **05 暂无候选偏好**，已提出的线索是软体入液，在丰富的形变和流体互动中体现密度差异；后续可按该需求另建场景工单。详见 [05 用户反馈](issues/05-density-demonstration-candidates.md#comments)。
 
 - 2026-10-30，02 的候选研究见[研究记录](research/02-cloth-shell-plant-candidates.md)。观看入口、参数依据和 AI 推荐集中于该文件；用户选择候选后，再建立对应复跑工单。
 - 2026-10-30，04 已完成[黏性流体候选研究](research/04-viscous-fluid-candidates.md)。优先观看 Mixed MPM 的 50/500 Pa·s 盘卷对照与 SPlisHSPlasH；ρ入口与黏度类型分别记录，E/ν按材料模型判断。共 7 项重点和 5 项备选，交给 05/06 接续密度展示与候选汇总。
