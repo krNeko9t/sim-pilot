@@ -3,7 +3,7 @@
 Status: ready-for-agent
 Updated: 2026-10-30
 
-共识来源：任务说明、grilling 的 Q1–Q6 回答及 2026-10-30 的用户观看反馈。01–05 已完成首轮候选研究，本轮人工审阅已收束，06 按已记录反馈汇总；复跑阶段在用户选择候选与场景后进入。术语见 [GLOSSARY.md](../../GLOSSARY.md)。
+共识来源：任务说明、grilling 的 Q1–Q6 回答及 2026-10-30 的用户观看反馈。01–05 已完成首轮候选研究，本轮人工审阅已收束，[候选总览与按场景推荐](research/06-candidate-overview-and-recommendations.md)已交付；已明确的补充问题由独立工单承接，复跑阶段在用户选择候选与场景后进入。术语见 [GLOSSARY.md](../../GLOSSARY.md)。
 
 ## Problem Statement
 
