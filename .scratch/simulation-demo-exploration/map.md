@@ -16,6 +16,7 @@
 ## Decisions-so-far
 
 - 2026-10-30，用户完成首轮观看评价，详见 01–05 各工单的 Comments。**当前优先级与候选取舍以这轮反馈为准**；此前研究记录中的 AI 推荐保留为首轮判断。
+- 2026-10-30，用户补充明确需求重心为**已有几何和材料参数的正向仿真，按需加后渲染**。后续按论文贡献、实际仿真实现与任务用途辨认候选价值；效率、接触、耦合等贡献按场景需要取舍，神经方法按其实际角色判断。共同筛选依据见[规格](spec.md)，用户原意见 [06 Comments](issues/06-candidate-overview-and-recommendations.md#comments)。
 - **01 为后续重点**：感兴趣的是 FreeForm、PhysTwin、Boba、AnisoMPM；次一级为 SoftMAC、MiNNIE。PhysGaussian 降为仿真与外观结合参考，Breaking Good 移出当前仿真候选；Newton、PhysX、MuJoCo、libuipc 为用户补充的框架线索。组织持续性、维护与实际采用成为筛选重点。详见 [01 用户反馈](issues/01-solid-deformation-candidates.md#comments)。
 - **02 后续分开布料与植物**，塑料瓶单列覆盖缺口；比较 IPC 各实现与材料模型／框架的配合。后续主候选排除老论文，关注在用实现；植物的参数预测、正向仿真和外观表示分别核实。详见 [02 用户反馈](issues/02-cloth-shell-plant-candidates.md#comments)。
 - **03、04 收窄投入**，优先近期、用户多、知名度高的代表项目。04 聚焦 Mixed MPM / Newton、Blender / Mantaflow。详见 [03](issues/03-granular-material-candidates.md#comments)、[04](issues/04-viscous-fluid-candidates.md#comments)。
