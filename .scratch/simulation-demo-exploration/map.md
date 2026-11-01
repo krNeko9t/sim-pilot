@@ -6,36 +6,29 @@
 
 ## Notes
 
-范围与阶段边界见[规格](spec.md)；每张工单的状态以其 `Status:` 为准。
+范围与阶段边界见[规格](spec.md)；工单状态、依赖与领取方式见[本地跟踪规则](../../docs/agents/issue-tracker.md#wayfinding-operations)。暂缓工单保留在地图范围内，以 `Status: deferred` 排除出可领取前沿。
 
-- [01 固体形变](issues/01-solid-deformation-candidates.md)
-- [02 布料、薄壳与植物物件](issues/02-cloth-shell-plant-candidates.md)
-- [03 颗粒材料](issues/03-granular-material-candidates.md)
-- [04 黏性流体](issues/04-viscous-fluid-candidates.md)
-- [05 密度展示](issues/05-density-demonstration-candidates.md)
-- [06 候选总览与推荐](issues/06-candidate-overview-and-recommendations.md)
+- 决策讨论使用 grilling 与 domain-modeling，术语沿用 [GLOSSARY.md](../../GLOSSARY.md)。
+- 使用各项目自带资产及成熟公开场景；数据格式与建模条件由研究解释。论文效果、物理模型、实际求解器和后渲染分别判断。
+- 首轮候选研究与人工观看已完成；当前推进安排以[从最终用途收束仿真选型主线](issues/11-simulation-selection-direction.md#answer)为准，早期推荐与反馈作为比较依据保留。
 
-**当前接续：**2026-11-01 用户要求先重审探索路径：按现象搜集候选尚未形成面向最终用途的路线判断；固体选型的覆盖与质量依据仍需补齐，布料、植物和软体入液分支的继续投入意愿较低。本轮先讨论选型主线和近期完成目标，讨论记录在对应子工单。现有规格、候选资料及分支状态保留，后续取舍随本轮讨论更新。当前采用各项目自带数据，数据格式与建模条件由研究解释。
+## Decisions so far
 
-用户进一步明确，需由 AI 提出方案并提供可向团队解释的技术依据；用户据此审阅视觉效果与选型。论文效果与其实际物理模型、求解器及适用条件分别判断。下游评分方法的合理性评估超出本轮范围。
+- 2026-10-30，[固体形变候选与动态演示](issues/01-solid-deformation-candidates.md#comments)：固体为重点，保留 FreeForm、PhysTwin、Boba、AnisoMPM 等效果兴趣及四个框架线索，补查持续维护与实际采用。
+- 2026-10-30，[布料、薄壳与植物物件候选与动态演示](issues/02-cloth-shell-plant-candidates.md#comments)：布料与植物的后续问题分开，分别核实材料／接触组合及植物正向模型，塑料瓶保留覆盖缺口。
+- 2026-10-30，[颗粒材料候选与动态演示](issues/03-granular-material-candidates.md#comments)：收窄后续投入，优先近期且采用较多的代表项目。
+- 2026-10-30，[黏性流体候选与动态演示](issues/04-viscous-fluid-candidates.md#comments)：完成动态入口与参数依据整理，后续关注 Mixed MPM / Newton、Blender / Mantaflow 等代表路线。
+- 2026-10-30，[密度影响的展示场景与候选](issues/05-density-demonstration-candidates.md#comments)：整理浮沉等密度展示依据，用户提出软体入液的丰富互动线索，具体场景另行讨论。
+- 2026-10-30，[候选总览与按场景推荐](issues/06-candidate-overview-and-recommendations.md#answer)：完成统一观看与候选归并，明确围绕已有参数的正向仿真取舍，并将补充问题交给独立工单。
+- 2026-11-01，[从最终用途收束仿真选型主线](issues/11-simulation-selection-direction.md#answer)：近期由 AI 收束可指导复跑的固体方案，给出覆盖、质量依据与参数对比场景；暂缓布料、植物和软体入液，ρ 留在主线。
 
-## Decisions-so-far
+## Not yet specified
 
-- 2026-10-30，[候选总览与按场景推荐](issues/06-candidate-overview-and-recommendations.md#answer)：已交付统一观看、实现归并、参数证据、覆盖缺口与场景推荐，并把已明确的补充问题交给独立工单。
-- 2026-10-30，用户确认本轮评价和筛选建议已表达完整，调研方式方面沿用已有意见。06 的人工输入已齐备；
-- 2026-10-30，用户完成首轮观看评价，详见 01–05 各工单的 Comments。**当前优先级与候选取舍以这轮反馈为准**；此前研究记录中的 AI 推荐保留为首轮判断。
-- 2026-10-30，用户补充明确需求重心为**已有几何和材料参数的正向仿真，按需加后渲染**。后续按论文贡献、实际仿真实现与任务用途辨认候选价值；效率、接触、耦合等贡献按场景需要取舍，神经方法按其实际角色判断。共同筛选依据见[规格](spec.md)，用户原意见 [06 Comments](issues/06-candidate-overview-and-recommendations.md#comments)。
-- **01 为后续重点**：感兴趣的是 FreeForm、PhysTwin、Boba、AnisoMPM；次一级为 SoftMAC、MiNNIE。PhysGaussian 降为仿真与外观结合参考，Breaking Good 移出当前仿真候选；Newton、PhysX、MuJoCo、libuipc 为用户补充的框架线索。组织持续性、维护与实际采用成为筛选重点。详见 [01 用户反馈](issues/01-solid-deformation-candidates.md#comments)。
-- **02 后续分开布料与植物**，塑料瓶单列覆盖缺口；比较 IPC 各实现与材料模型／框架的配合。后续主候选排除老论文，关注在用实现；植物的参数预测、正向仿真和外观表示分别核实。详见 [02 用户反馈](issues/02-cloth-shell-plant-candidates.md#comments)。
-- **03、04 收窄投入**，优先近期、用户多、知名度高的代表项目。04 聚焦 Mixed MPM / Newton、Blender / Mantaflow。详见 [03](issues/03-granular-material-candidates.md#comments)、[04](issues/04-viscous-fluid-candidates.md#comments)。
-- **05 暂无候选偏好**，已提出的线索是软体入液，在丰富的形变和流体互动中体现密度差异；后续可按该需求另建场景工单。详见 [05 用户反馈](issues/05-density-demonstration-candidates.md#comments)。
+- 完整花束的相互接触与捆扎、盆土内部力学等进一步覆盖需求，随固体方案及植物分支接续后的发现细化；已有线索见[布料、薄壳与植物候选研究](research/02-cloth-shell-plant-candidates.md)。
+- 蜂蜜等流体场景的密度独立视觉差异、真实尺度、黏度类型与渲染资产，待主线提出具体覆盖需求或选定场景后细化，见[黏性流体候选研究](research/04-viscous-fluid-candidates.md)。
+- 密度场景选定后，进一步明确独立对比所需的初态、单位映射、表面张力及完整示例资产；已有边界见[密度展示研究](research/05-density-demonstration-candidates.md)。
 
-- 2026-10-30，02 的候选研究见[研究记录](research/02-cloth-shell-plant-candidates.md)。观看入口、参数依据和 AI 推荐集中于该文件；用户选择候选后，再建立对应复跑工单。
-- 2026-10-30，04 已完成[黏性流体候选研究](research/04-viscous-fluid-candidates.md)。优先观看 Mixed MPM 的 50/500 Pa·s 盘卷对照与 SPlisHSPlasH；ρ入口与黏度类型分别记录，E/ν按材料模型判断。共 7 项重点和 5 项备选，交给 05/06 接续密度展示与候选汇总。
-- 2026-10-30，05 的[密度展示研究](research/05-density-demonstration-candidates.md)收录球体浮沉、分层流体翻转、液滴回球、解析浮力与梁振动。已抽帧核对 Akinci 2012、Primal SPH 2026、MultiLBM 2024 的密度标签和动态；优先观看浮沉，复跑候选优先考虑 SPlisHSPlasH，理论参照保留 Ferrite。代码发布状态与控制条件分别记录，交给 06 汇总。
+## Out of scope
 
-## Fog
-
-- 02：完整花束的相互接触与捆扎、盆土内部力学，以及免商业仿真软件的完整塑料瓶复跑材料，仍需补充证据。具体覆盖和待核实项见研究记录。
-- 04：ρ的独立视觉差异、选定蜂蜜场景的真实尺度与固定黏度类型，以及部分候选的单位映射和渲染资产，留待补充研究或所选候选复跑。详见[研究记录](research/04-viscous-fluid-candidates.md)。
-- 05：浮沉视频采用连续调密度，独立复跑需统一初态；部分最新方法的完整求解器/示例资产、液滴对照的表面张力及单位映射仍待确认。具体边界见[研究记录](research/05-density-demonstration-candidates.md)，按用户选中的候选与场景建立复跑工单。
+- 上下游接口、统一仿真平台、真实物件材料标定与下游视频评分方法，范围边界见[规格](spec.md#out-of-scope)。
+- 安装与复跑由用户选择方案后的独立工单承接。

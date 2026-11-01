@@ -1,7 +1,7 @@
 # 08: 布料材料模型与接触实现的组合
 
 Type: research
-Status: open
+Status: deferred
 Blocked by: 02
 
 ## Question
@@ -17,3 +17,9 @@ Blocked by: 02
 - 依据用户兴趣，推荐少量“候选＋布料／帽子场景＋参数目标”组合；同外力或释放后的响应与受指定轨迹控制的部分分别解释。
 
 完成边界为组合选择的依据与建议。所选方案的安装、运行与新参数视频另建复跑票。
+
+## Comments
+
+### 2026-11-01：随固体主线收束暂缓
+
+依据用户确认的[选型主线决议](11-simulation-selection-direction.md#answer)，本票暂缓独立研究，保留现有资料与效果偏好。[重点固体候选与框架的正向仿真取舍](07-solid-forward-simulation-selection.md)若暴露需要本票回答的具体覆盖问题，再据此更新问题与依赖、恢复接续。

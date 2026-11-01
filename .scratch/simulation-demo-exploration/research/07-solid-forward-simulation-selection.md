@@ -4,6 +4,8 @@
 
 **当前状态：用户反馈后重开研究，首轮示例优先排序撤回。** 本文已查参数入口、资产和维护，但完整物体的广覆盖能力与运动／形变质量仍需补足证据。当前采用各项目自带资产和成熟公开场景；数据格式及准备条件由研究说明，上游对接留待后续。下文具体例子保留为已找到的局部能力入口，路线选择按补充研究重新评价。
 
+2026-11-01 接续：[选型主线已收束](../issues/11-simulation-selection-direction.md#answer)，本研究按[更新后的工单](../issues/07-solid-forward-simulation-selection.md)形成可直接指导复跑的固体方案，包含明确推荐、完整物体覆盖与质量依据、E／ν／ρ 对比场景。布料、植物、软体入液的独立工作暂缓，ρ 留在主线；libuipc + Blender 为优先考察对象。
+
 ## 用户反馈后的质量补核
 
 **VBD 的近似发生在哪一层。** VBD 是求解隐式 Euler 变分能量的顶点分块下降算法，可用于体 FEM；充分迭代时可收敛到该离散问题的解。迭代提前截断会留下残差。原论文 §3.7 明确讨论不同初始化和有限迭代造成外力响应失真、材料偏软、过度拉伸和堆叠接触困难，因此稳定性与材料响应准确性应分别判断。Newton 鸭子例的每子步5次迭代、每帧10子步只说明示例计算预算，当前研究尚缺其代表性物体误差和质量证据。[VBD 原论文](https://arxiv.org/html/2403.06321v4)、[鸭子配置](https://github.com/newton-physics/newton/blob/main/newton/examples/softbody/example_softbody_franka.py)。
@@ -156,4 +158,4 @@ VoMP 已公开 libuipc 橙子和 Newton 软块的适配代码，支持“有人�
 
 当前继续完成完整物体路线的比较：用哪些公开场景证明覆盖范围与运动质量；各路线在哪些材料、结构和接触条件下适用；现成数字资产怎样参与仿真并保留后渲染质量。原示例优先排序待这些证据补齐后重评。候选仍按实际物理实现判断，用户此前的效果兴趣继续保留。
 
-各节具体缺口保留：FreeForm 原片资产、AnisoMPM 尺度与断裂表面、MiNNIE 导出、SoftMAC 质量约定，以及下游适配代码的材料映射。当前研究使用各项目自己的数据，格式和准备条件一并说明。复跑继续在用户选择后建票；SimReady 派生资产的研究评估许可及 AnisoMPM／MiNNIE 仓库许可状态沿[首轮研究](01-solid-deformation-candidates.md)核对。SoliDualSPHysics 的动态入口继续作为已有缺口；进入相应具体材料选择时再补。固液耦合沿[软体入液的密度差异展示](../issues/10-softbody-liquid-density-scene.md)接续。
+各节具体缺口保留：FreeForm 原片资产、AnisoMPM 尺度与断裂表面、MiNNIE 导出、SoftMAC 质量约定，以及下游适配代码的材料映射。当前研究使用各项目自己的数据，格式和准备条件一并说明。复跑继续在用户选择后建票；SimReady 派生资产的研究评估许可及 AnisoMPM／MiNNIE 仓库许可状态沿[首轮研究](01-solid-deformation-candidates.md)核对。SoliDualSPHysics 的动态入口继续作为已有缺口；进入相应具体材料选择时再补。[软体入液的密度差异展示](../issues/10-softbody-liquid-density-scene.md)已暂缓，待固体方案暴露具体覆盖需求时再接续。

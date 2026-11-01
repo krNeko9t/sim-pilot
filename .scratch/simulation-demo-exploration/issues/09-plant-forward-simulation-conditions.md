@@ -1,7 +1,7 @@
 # 09: 植物正向仿真的参考状态与支撑条件
 
 Type: research
-Status: open
+Status: deferred
 Blocked by: 02
 
 ## Question
@@ -17,3 +17,9 @@ M-PhyGs 与 VoMP 的花材、盆栽演示中，哪些正向仿真模型和现成
 - 按同一几何、支撑、初态约定和接触动作，讨论如何独立改变 E 或 ρ 并观察释放后的枝叶响应。
 
 完成边界为植物正向仿真的能力、建模条件和场景推荐。整束捆扎、完整根土力学按发现的实际需求再展开；安装与复跑由用户选择触发。
+
+## Comments
+
+### 2026-11-01：随固体主线收束暂缓
+
+依据用户确认的[选型主线决议](11-simulation-selection-direction.md#answer)，本票暂缓独立研究，保留现有资料与效果偏好。[重点固体候选与框架的正向仿真取舍](07-solid-forward-simulation-selection.md)若暴露需要本票回答的具体覆盖问题，再据此更新问题与依赖、恢复接续。
