@@ -1,5 +1,7 @@
 # 仿真候选总览与按场景推荐
 
+固体方向后续更新（2026-11-01）：[重点固体候选与框架的正向仿真取舍](07-solid-forward-simulation-selection.md)因用户对覆盖与质量依据的反馈重开；材料和维护资料保留，具体示例推荐待重新评估。下文保留首轮全局总览。
+
 更新：2026-10-30。交付对应[候选总览与按场景推荐](../issues/06-candidate-overview-and-recommendations.md)，范围沿用[探索规格](../spec.md)。候选取舍采用用户本轮观看反馈，原研究保留详细参数、来源与历史推荐。
 
 **AI 建议先从 FreeForm 的玩具或水果效果中选一个 E 展示场景，同时把 Newton、libuipc 作为直接接收材料参数的框架重点。** PhysTwin／Boba 保留用户的互动效果兴趣，AnisoMPM 保留肉与水果的材料行为兴趣；两组分别补齐连续体参数映射、各向异性与损伤输入后，再确定承担的参数展示。ν 可单独选 MiNNIE 或具备相应本构的 FEM／薄壳场景。颗粒集中看 Mixed MPM／Newton；蜂蜜保留 Newton 与 Blender／Mantaflow；ρ 沿用户提出的软体入液场景继续明确耦合条件。

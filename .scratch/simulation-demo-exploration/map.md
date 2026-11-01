@@ -11,7 +11,7 @@
 - [05 密度展示](issues/05-density-demonstration-candidates.md)
 - [06 候选总览与推荐](issues/06-candidate-overview-and-recommendations.md)
 
-**当前接续：**[候选总览与按场景推荐](issues/06-candidate-overview-and-recommendations.md)已完成，成果供用户审阅选择。既有反馈中已明确的补充问题已建立独立工单，按 `issues/` 中的状态与依赖接续；首轮研究票保持已完成。复跑票按用户选中的候选与场景建立。
+**当前接续：**[重点固体候选与框架的正向仿真取舍](issues/07-solid-forward-simulation-selection.md#comments)因用户反馈重开，继续研究完整物体覆盖、运动／形变质量与数字资产后渲染。当前采用各项目自带数据，示例优先推荐待重新评估；[候选总览与按场景推荐](issues/06-candidate-overview-and-recommendations.md)继续提供全局入口。其他补充问题按 `issues/` 中的状态与依赖接续。
 
 ## Decisions-so-far
 
