@@ -127,6 +127,28 @@ OpenRadioss 的历史公开例子包含多部件手机跌落：有部件连接�
 
 这种显式路线的步长受材料与网格影响；常用质量缩放会改变质量和动态行为，ρ对比应保留真实设定质量。其后渲染还需处理几何与材质，现阶段的覆盖需求更适合先从弹性主线收束。[显式步长与质量缩放](https://help.altair.com/2024/hwsolvers/rad/topics/solvers/rad/theory_dynamic_analysis_time_step_control_r.htm)
 
+## 开源与环境配置成本
+
+2026-11-01 审阅补充：用户追问各方案的开源性、环境配置及使用难度，并以熟悉的 Newton Python 工作流作比较。下表依据官方许可、安装文档、发布包及源码判断；本轮只读核查，未安装或运行。难度以有兼容 NVIDIA 驱动的 Linux 机器、使用现成示例为背景，区分物理核心与可选渲染／资产的条件。
+
+| 路线 | 核心源码许可 | 安装与日常使用 | 当前任务的成本判断 |
+| --- | --- | --- | --- |
+| **Newton VBD** | Apache-2.0；官方 rubber duck 资产同许可 | `pip install "newton[examples]"` 后可运行 `python -m newton.examples softbody_franka`。场景与求解器采用 Python／Warp；ρ 直接输入，E／ν 换算为 Lamé 参数 | **低**。现成完整鸭子和脚本入口直接；VBD 仍为 experimental，运动质量与参数配置沿用此前边界。[仓库与安装](https://github.com/newton-physics/newton)、[VBD](https://newton-physics.github.io/newton/stable/solvers/vbd.html) |
+| **Genesis MPM.Elastic** | Genesis 核心 Apache-2.0 | 匹配 GPU 的 PyTorch 加 `pip install genesis-world`；Python 中直接配置 `Elastic(E=..., nu=..., rho=...)`。标准安装使用预编译依赖 | **基础低，加入 Nyx 后低至中**。与 Newton 同属 Python 起步方便的路线；已查完整 worm 是主动肌肉例，改为被动物体仍需对应场景配置。[安装](https://genesis-world.readthedocs.io/en/latest/user_guide/overview/installation.html)、[材料](https://genesis-world.readthedocs.io/en/latest/api_reference/engine/material/mpm/elastic.html) |
+| **libuipc／pyuipc** | 核心 Apache-2.0；Blender 适配层 GPL-3.0-or-later | `pip install pyuipc` 有现成 wheel，Python 场景可调 E／ν／ρ。当前 0.0.29 支持 CPython 3.10–3.14、Windows x64／Linux x64（glibc ≥2.34），wheel 不要求本机 CUDA Toolkit | **现成例低；本次采用已修复 E／ν 入口为中至高**。已发布 wheel 与修复的关系见下文；源码构建需 C++20、CMake、CUDA ≥12.4 和 vcpkg。[项目](https://github.com/spiriMirror/libuipc)、[发布](https://github.com/spiriMirror/libuipc/releases/tag/v0.0.29)、[源码构建](https://spirimirror.github.io/libuipc-doc/build_install/linux/) |
+| **PolyFEM＋IPC** | MIT | 当前官方 IPC 教程采用 CMake／C++17 构建，随后 `PolyFEM_bin -j scene.json -o output`，修改 JSON 中 E／ν／ρ 即可运行；标准路径使用 CPU | **安装中，目标场景加后渲染中至高**。日常调参可通过 JSON 完成；高阶旧场景还需版本适配。Python 绑定存在，但当前预编译包与新 IPC 场景的兼容性仍待落实。[仓库](https://github.com/polyfem/polyfem)、[IPC 运行教程](https://polyfem.github.io/tutorials/ipc_quick_start_guide/ipc_quick_start_guide/) |
+| **PhysX：独立 ovphysx** | PhysX SDK 为 BSD-3-Clause；ovphysx 源码为 Apache-2.0，官方预编译 SDK／wheel 采用 NVIDIA Omniverse License | 已有 pip wheel 和 Python API，可脱离 Kit 使用，也不要求本机 CUDA Toolkit。当前 quickstart 安装 `ovphysx physx-usd-schemas newton-usd-schemas`；参数配置在 USD 材料属性上 | **安装低至中，构造参数演示中**。要处理 stage、网格绑定、材料和渲染交接；当前仍 pre-release。[许可与说明](https://github.com/NVIDIA-Omniverse/PhysX/blob/main/ovphysx/README.md)、[quickstart](https://nvidia-omniverse.github.io/PhysX/ovphysx/latest/tutorials/quickstart.html) |
+| **PhysX：裸 SDK 或 Isaac Sim／Lab** | SDK 为 BSD-3-Clause；Isaac Sim 仓库 Apache-2.0，Isaac Lab 主框架 BSD-3。Kit 与配套资产另有条款 | 裸 SDK 通常自行构建 C++ 应用；Isaac 环境可 pip 安装并用 Python 操作，但运行时、GPU 和磁盘要求较重，换取现成 USD 场景及 RTX 渲染集成 | **环境高，现成 Isaac 场景的日常调参低至中**。选择 PhysX 时应明确采用哪条交付路径。[SDK 许可](https://github.com/NVIDIA-Omniverse/PhysX/blob/main/LICENSE.md)、[Sim 许可](https://github.com/isaac-sim/IsaacSim/blob/main/LICENSE)、[Lab 许可](https://github.com/isaac-sim/IsaacLab#license)、[Isaac 安装](https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_python.html) |
+
+直接影响本次选型的具体条件：
+
+- **libuipc 的 E／ν 版本成本已定位。** PyPI／GitHub 最新 0.0.29 于 2026-10-18 发布，其标签源码仍使用修正前的 SNK 系数映射，确实未含 10-19 的修复。若采用已修复的官方参数入口，当前应从包含修复的源码构建。0.0.29 已加入原生四面体生成，因此旧 Blender 文档中因生成体网格而要求源码的条件已变化；本任务当前的源码需求来自材料映射。[发布包](https://pypi.org/project/pyuipc/)、[0.0.29 材料源码](https://github.com/spiriMirror/libuipc/blob/v0.0.29/src/constitution/stable_neo_hookean.cpp)、[官方修复说明](https://spirimirror.github.io/libuipc-doc/specification/constitutions/stable_neo_hookean/)
+- **PolyFEM 有 Python 绑定，但应保留版本区别。** `polyfempy` 的 PyPI 包为 0.2.3（2019，仅源码包）；conda-forge 的 0.5.2 于 2023-09-29 有 Linux／Windows／macOS x86-64、Python 3.8–3.12 预编译构建。当前 IPC 主线采用官方构建与 JSON 教程更明确。社区 Blender 插件另有 Docker 路径，可减少本机编译工作，镜像与所选场景仍需匹配。[PyPI](https://pypi.org/project/polyfempy/)、[conda 文件](https://anaconda.org/conda-forge/polyfempy/files)、[社区插件](https://github.com/ETSim/PolyFEMBlenderPlugin)
+- **Genesis 物理核心与 Nyx 分开说明开源性。** Nyx 已公开插件、文档、示例与编译 wheel；公开仓库的 Apache-2.0 范围与整个渲染核心源码开放性分别判断，本轮未核到足以将全部核心称为开源的证据。Nyx 还要求匹配 GPU PyTorch 与 Vulkan 硬件光追条件。[仓库](https://github.com/Genesis-Embodied-AI/genesis-nyx)、[安装](https://genesis-embodied-ai.github.io/genesis-nyx/latest/user_guide/installation.html)
+- **安装便利与视频交付分别计成本。** Newton 的脚本、预览及 USD 路径明确，变形外观与 PBR 绑定仍按选定场景落实；Genesis＋Nyx 已有 MPM 外观网格路径；libuipc Blender 扩展有缓存烘焙；PolyFEM 标准输出还要衔接表面／位移与后渲染。现成 Python 包主要降低仿真入口成本，最终出片沿用各路线已查的输出条件。[Newton 可视化](https://newton-physics.github.io/newton/latest/guide/visualization.html)、[Nyx 支持](https://genesis-embodied-ai.github.io/genesis-nyx/latest/user_guide/supported_features.html)、[libuipc Blender](https://spirimirror.github.io/libuipc-doc/build_install/blender/)
+
+**对推荐的影响（AI 判断）：**Newton 与 Genesis 应处于 Python 上手便利性的第一档；libuipc 的现成入口同样轻，但本次材料参数版本条件增加投入。PolyFEM 的优先理由仍是已有高阶与接触质量证据，其配置／导出成本应与质量价值一起交给用户审阅。本次补充尚未形成用户的新路线选择。
+
 ## 交接时保留的具体条件
 
 - **版本与资产：**PolyFEM 主分支在2026-10-30移除了 legacy 配置路径；高阶 Armadillo 论文配置仍含旧字段。使用匹配的论文实现或迁移配置，当前 P2 示例可作参考。常规 polyfem-data 与选定版本的运行兼容性在复跑时落实。[核查详情](07-continuum-route-evidence.md)
