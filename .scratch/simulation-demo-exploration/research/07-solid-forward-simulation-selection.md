@@ -2,9 +2,9 @@
 
 核查日期：2026-11-01。对应[重点固体候选与框架的正向仿真取舍](../issues/07-solid-forward-simulation-selection.md)，承接[固体形变的用户反馈](../issues/01-solid-deformation-candidates.md#comments)与[候选总览](06-candidate-overview-and-recommendations.md)。术语和阶段边界沿用[探索规格](../spec.md)。本次依据作者论文、官方文档、发布记录与源码形成选型建议；动态效果沿用已有观看记录，新增示例的参数效果属于待复跑证据。
 
-**当前状态：用户反馈后重开研究，首轮示例优先排序撤回。** 本文已查参数入口、资产和维护，但完整物体的广覆盖能力与运动／形变质量仍需补足证据。当前采用各项目自带资产和成熟公开场景；数据格式及准备条件由研究说明，上游对接留待后续。下文具体例子保留为已找到的局部能力入口，路线选择按补充研究重新评价。
+**本文为历史核查资料；当前方案见[从完整物体需求重做固体正向仿真选型](07-demand-driven-solid-selection.md)。** 用户已明确此前感兴趣／优先考察候选的理由均已过时，本文的候选排序和取舍理由均由新研究替代。已查参数入口、资产和源码事实留作回溯，版本与可用性以新研究的核查为准。
 
-2026-11-01 接续：[选型主线已收束](../issues/11-simulation-selection-direction.md#answer)，本研究按[更新后的工单](../issues/07-solid-forward-simulation-selection.md)形成可直接指导复跑的固体方案，包含明确推荐、完整物体覆盖与质量依据、E／ν／ρ 对比场景。布料、植物、软体入液的独立工作暂缓，ρ 留在主线；libuipc + Blender 为优先考察对象。
+历史接续：[选型主线](../issues/11-simulation-selection-direction.md#answer)确定了方案交付与分支安排；其中 libuipc + Blender 的优先考察地位已由本日最新要求撤销。布料、植物、软体入液的独立工作继续暂缓，ρ 留在主线。
 
 ## 用户反馈后的质量补核
 

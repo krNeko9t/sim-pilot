@@ -10,17 +10,18 @@
 
 - 决策讨论使用 grilling 与 domain-modeling，术语沿用 [GLOSSARY.md](../../GLOSSARY.md)。
 - 使用各项目自带资产及成熟公开场景；数据格式与建模条件由研究解释。论文效果、物理模型、实际求解器和后渲染分别判断。
-- 首轮候选研究与人工观看已完成；当前推进安排以[从最终用途收束仿真选型主线](issues/11-simulation-selection-direction.md#answer)为准，早期推荐与反馈作为比较依据保留。
+- 首轮候选研究与人工观看已完成；当前推进安排以[从最终用途收束仿真选型主线](issues/11-simulation-selection-direction.md#answer)为准。2026-11-01 最新要求撤销旧兴趣候选及优先考察理由，重新按需求研究；早期推荐与反馈仅作历史记录。
 
 ## Decisions so far
 
-- 2026-10-30，[固体形变候选与动态演示](issues/01-solid-deformation-candidates.md#comments)：固体为重点，保留 FreeForm、PhysTwin、Boba、AnisoMPM 等效果兴趣及四个框架线索，补查持续维护与实际采用。
+- 2026-10-30，[固体形变候选与动态演示](issues/01-solid-deformation-candidates.md#comments)：完成首轮候选与观看反馈记录；当时的兴趣与优先级已由后续重新研究要求取代。
 - 2026-10-30，[布料、薄壳与植物物件候选与动态演示](issues/02-cloth-shell-plant-candidates.md#comments)：布料与植物的后续问题分开，分别核实材料／接触组合及植物正向模型，塑料瓶保留覆盖缺口。
 - 2026-10-30，[颗粒材料候选与动态演示](issues/03-granular-material-candidates.md#comments)：收窄后续投入，优先近期且采用较多的代表项目。
 - 2026-10-30，[黏性流体候选与动态演示](issues/04-viscous-fluid-candidates.md#comments)：完成动态入口与参数依据整理，后续关注 Mixed MPM / Newton、Blender / Mantaflow 等代表路线。
 - 2026-10-30，[密度影响的展示场景与候选](issues/05-density-demonstration-candidates.md#comments)：整理浮沉等密度展示依据，用户提出软体入液的丰富互动线索，具体场景另行讨论。
 - 2026-10-30，[候选总览与按场景推荐](issues/06-candidate-overview-and-recommendations.md#answer)：完成统一观看与候选归并，明确围绕已有参数的正向仿真取舍，并将补充问题交给独立工单。
 - 2026-11-01，[从最终用途收束仿真选型主线](issues/11-simulation-selection-direction.md#answer)：近期由 AI 收束可指导复跑的固体方案，给出覆盖、质量依据与参数对比场景；暂缓布料、植物和软体入液，ρ 留在主线。
+- 2026-11-01，[重点固体候选与框架的正向仿真取舍](issues/07-solid-forward-simulation-selection.md#answer)：撤销旧候选优先级后完成需求重评，形成离线体弹性主线、条件替代及三参数场景建议，交由用户审阅选择。
 
 ## Not yet specified
 
